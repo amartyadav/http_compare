@@ -76,6 +76,7 @@ fn read_and_parse_json(json_file_paths: Vec<String>) {
     for mainobject1 in main_object_1_result {
         for mainobject2 in &main_object_2_result {
             compare_request_url(&mainobject1, &mainobject2);
+            compare_request_method(&mainobject1, &mainobject2);
         }
     }
     
@@ -92,5 +93,19 @@ fn compare_request_url(mainobject1: &MainObject, mainobject2: &MainObject) {
         println!("Request URL is same");
         println!("File1: {:?}", mainobject1.request.url);
         println!("File2: {:?}", mainobject2.request.url);
+    }
+}
+
+fn compare_request_method(mainobject1: &MainObject, mainobject2: &MainObject) {
+    // compare request method and print the difference
+    if mainobject1.request.method != mainobject2.request.method {
+        println!("Request Method is different");
+        println!("File1: {:?}", mainobject1.request.method);
+        println!("File2: {:?}", mainobject2.request.method);
+    }
+    else {
+        println!("Request Method is same");
+        println!("File1: {:?}", mainobject1.request.method);
+        println!("File2: {:?}", mainobject2.request.method);
     }
 }
